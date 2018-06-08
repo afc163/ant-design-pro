@@ -43,7 +43,9 @@ for (let i = 0; i < 7; i += 1) {
 }
 
 const Yuan = ({ children }) => (
-  <span dangerouslySetInnerHTML={{ __html: yuan(children) }} /> /* eslint-disable-line react/no-danger */
+  <span
+    dangerouslySetInnerHTML={{ __html: yuan(children) }}
+  /> /* eslint-disable-line react/no-danger */
 );
 
 @connect(({ chart, loading }) => ({
@@ -246,6 +248,16 @@ export default class Analysis extends Component {
 
     return (
       <Fragment>
+        <Row>
+          <Col>
+            <div>
+              <span>这里有个 icon</span>
+              <i className="iconfont">&#xe604;</i>
+              <i className="iconfont icon-link" />
+            </div>
+          </Col>
+        </Row>
+
         <Row gutter={24}>
           <Col {...topColResponsiveProps}>
             <ChartCard
@@ -455,9 +467,7 @@ export default class Analysis extends Component {
               <Pie
                 hasLegend
                 subTitle="销售额"
-                total={
-                  () => <Yuan>{salesPieData.reduce((pre, now) => now.y + pre, 0)}</Yuan>
-                }
+                total={() => <Yuan>{salesPieData.reduce((pre, now) => now.y + pre, 0)}</Yuan>}
                 data={salesPieData}
                 valueFormat={value => <Yuan>{value}</Yuan>}
                 height={248}
